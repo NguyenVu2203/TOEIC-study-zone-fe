@@ -18,18 +18,13 @@ import RegisterForm from "@/components/auth/RegisterForm.vue";
 const router = useRouter();
 
 const handleRegister = (formData) => {
-  console.log("Dữ liệu đăng ký:", formData);
-
-  // Kiểm tra confirm_password có khớp với password không
   if (formData.password !== formData.confirm_password) {
     alert("Mật khẩu nhập lại không khớp!");
     return;
   }
 
-  // Dữ liệu gửi lên server (bỏ confirm_password nếu không cần gửi)
   const userDataToSend = {
-    first_name: formData.first_name,
-    last_name: formData.last_name,
+    full_name: formData.full_name,
     email: formData.email,
     password: formData.password,
     date_of_birth: formData.date_of_birth,
@@ -37,10 +32,9 @@ const handleRegister = (formData) => {
 
   console.log("Dữ liệu gửi lên server:", userDataToSend);
 
-  // Sau này tích hợp API để gửi dữ liệu lên server
-  // Ví dụ: await authService.register(userDataToSend);
+  // Gửi lên server nếu có API
+  // await authService.register(userDataToSend);
 
-  // Chuyển hướng về trang đăng nhập sau khi đăng ký thành công
   router.push("/login");
 };
 </script>
@@ -57,7 +51,7 @@ const handleRegister = (formData) => {
 }
 
 .study-zone-logo {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #1877f2;
   text-align: center;
@@ -66,15 +60,16 @@ const handleRegister = (formData) => {
 
 .register-form {
   background-color: #fff;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 432px;
+  box-sizing: border-box;
 }
 
 .register-title {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #1c1e21;
   text-align: center;
@@ -82,7 +77,7 @@ const handleRegister = (formData) => {
 }
 
 .register-subtitle {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: #606770;
   text-align: center;
   margin-bottom: 1rem;
@@ -91,6 +86,44 @@ const handleRegister = (formData) => {
 .divider {
   border: 0;
   border-top: 1px solid #dadde1;
-  margin: 0.5rem 0;
+  margin: 0.5rem 0 1rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .study-zone-logo {
+    font-size: 2.5rem;
+  }
+
+  .register-form {
+    padding: 1rem;
+  }
+
+  .register-title {
+    font-size: 1.25rem;
+  }
+
+  .register-subtitle {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-form {
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .study-zone-logo {
+    font-size: 2rem;
+  }
+
+  .register-title {
+    font-size: 1.125rem;
+  }
+
+  .register-subtitle {
+    font-size: 0.875rem;
+  }
 }
 </style>

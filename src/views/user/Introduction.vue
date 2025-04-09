@@ -19,7 +19,7 @@
           </div>
           <div class="col-lg-6">
             <img
-              src="https://via.placeholder.com/600x400?text=Study+Zone"
+              src="@/assets/images/banner-introductions.png"
               alt="Study Zone Platform"
               class="img-fluid rounded shadow"
             />
@@ -95,55 +95,58 @@
     </section>
 
     <!-- Features Section -->
+    <!-- Features Section -->
     <section class="features-section py-5 bg-light">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 order-lg-2">
-            <h2 class="fw-bold mb-4">Tính năng nổi bật</h2>
-            <div class="feature-item d-flex mb-4">
-              <div
-                class="feature-icon bg-primary text-white rounded-circle me-4"
-              >
-                <i class="bi bi-check-lg fs-4"></i>
+            <h2 class="fw-bold mb-5">Tính năng nổi bật</h2>
+            <div class="feature-list">
+              <div class="feature-item d-flex mb-4">
+                <div
+                  class="feature-icon bg-primary text-white rounded-circle me-4"
+                >
+                  <i class="bi bi-check-lg fs-4"></i>
+                </div>
+                <div class="feature-text">
+                  <h5 class="fw-bold">Học mọi lúc, mọi nơi</h5>
+                  <p class="text-muted mb-0">
+                    Truy cập kho bài giảng và tài liệu 24/7 trên mọi thiết bị.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h5 class="fw-bold">Học mọi lúc, mọi nơi</h5>
-                <p class="text-muted mb-0">
-                  Truy cập kho bài giảng và tài liệu 24/7 trên mọi thiết bị.
-                </p>
+              <div class="feature-item d-flex mb-4">
+                <div
+                  class="feature-icon bg-primary text-white rounded-circle me-4"
+                >
+                  <i class="bi bi-check-lg fs-4"></i>
+                </div>
+                <div class="feature-text">
+                  <h5 class="fw-bold">Luyện đề đa dạng</h5>
+                  <p class="text-muted mb-0">
+                    Ngân hàng đề thi phong phú với đầy đủ các môn học và cấp độ.
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="feature-item d-flex mb-4">
-              <div
-                class="feature-icon bg-primary text-white rounded-circle me-4"
-              >
-                <i class="bi bi-check-lg fs-4"></i>
-              </div>
-              <div>
-                <h5 class="fw-bold">Luyện đề đa dạng</h5>
-                <p class="text-muted mb-0">
-                  Ngân hàng đề thi phong phú với đầy đủ các môn học và cấp độ.
-                </p>
-              </div>
-            </div>
-            <div class="feature-item d-flex mb-4">
-              <div
-                class="feature-icon bg-primary text-white rounded-circle me-4"
-              >
-                <i class="bi bi-check-lg fs-4"></i>
-              </div>
-              <div>
-                <h5 class="fw-bold">Theo dõi tiến độ</h5>
-                <p class="text-muted mb-0">
-                  Hệ thống báo cáo chi tiết giúp bạn đánh giá sự tiến bộ của bản
-                  thân.
-                </p>
+              <div class="feature-item d-flex mb-4">
+                <div
+                  class="feature-icon bg-primary text-white rounded-circle me-4"
+                >
+                  <i class="bi bi-check-lg fs-4"></i>
+                </div>
+                <div class="feature-text">
+                  <h5 class="fw-bold">Theo dõi tiến độ</h5>
+                  <p class="text-muted mb-0">
+                    Hệ thống báo cáo chi tiết giúp bạn đánh giá sự tiến bộ của
+                    bản thân.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-lg-6 order-lg-1">
             <img
-              src="https://via.placeholder.com/600x500?text=Features"
+              src="@/assets/images/banner-feature.png"
               alt="Study Zone Features"
               class="img-fluid rounded shadow"
             />
@@ -169,13 +172,13 @@
               <div class="card-body p-4">
                 <div class="d-flex align-items-center mb-3">
                   <img
-                    src="https://via.placeholder.com/50x50?text=User1"
+                    src="@/assets/images/user-avatar.png"
                     alt="Student"
-                    class="rounded-circle me-3"
+                    class="rounded-circle me-3 testimonial-avatar"
                   />
                   <div>
                     <h6 class="fw-bold mb-0">Nguyễn Văn A</h6>
-                    <small class="text-muted">Học viên Toán</small>
+                    <small class="text-muted">Học viên Tiếng Anh</small>
                   </div>
                 </div>
                 <p class="mb-0">
@@ -191,9 +194,9 @@
               <div class="card-body p-4">
                 <div class="d-flex align-items-center mb-3">
                   <img
-                    src="https://via.placeholder.com/50x50?text=User2"
+                    src="@/assets/images/user-avatar.png"
                     alt="Student"
-                    class="rounded-circle me-3"
+                    class="rounded-circle me-3 testimonial-avatar"
                   />
                   <div>
                     <h6 class="fw-bold mb-0">Trần Thị B</h6>
@@ -212,9 +215,9 @@
               <div class="card-body p-4">
                 <div class="d-flex align-items-center mb-3">
                   <img
-                    src="https://via.placeholder.com/50x50?text=User3"
+                    src="@/assets/images/user-avatar.png"
                     alt="Student"
-                    class="rounded-circle me-3"
+                    class="rounded-circle me-3 testimonial-avatar"
                   />
                   <div>
                     <h6 class="fw-bold mb-0">Lê Văn C</h6>
@@ -233,7 +236,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section py-5 bg-primary text-white">
+    <section class="cta-section py-5 bg-primary text-white mb-5">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-8 text-center">
@@ -319,5 +322,24 @@
     background-color: #1877f2;
     color: white;
   }
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-item {
+  align-items: flex-start;
+}
+
+.feature-text {
+  flex: 1;
 }
 </style>

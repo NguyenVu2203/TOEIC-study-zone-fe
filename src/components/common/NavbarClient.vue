@@ -1,8 +1,11 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <nav
+    class="navbar navbar-brand navbar-expand-lg navbar-light bg-white shadow-sm"
+  >
     <div class="container">
       <router-link class="navbar-brand" to="/">
         <img :src="logo" alt="Study Zone Logo" class="logo" />
+        <span class="brand-text ms-2">Study Zone</span>
       </router-link>
       <button
         class="navbar-toggler"
@@ -79,9 +82,8 @@
 <script setup>
 import { ref, onMounted } from "vue";
 
-// Sử dụng placeholder nếu chưa có hình ảnh
-const logo = "https://via.placeholder.com/40x40?text=Logo";
-const userAvatar = "https://via.placeholder.com/32x32?text=User";
+import logo from "@/assets/images/logo-study-zone.png";
+import userAvatar from "@/assets/images/user-avatar.png";
 
 // Mô phỏng trạng thái đăng nhập (thay bằng logic thực tế khi có BE)
 const isLoggedIn = ref(false);
@@ -104,10 +106,30 @@ onMounted(() => {
   padding: 1rem 0;
   position: relative;
   z-index: 1000;
+  min-height: 65px; /* Thay height bằng min-height */
+  width: 100%;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center; /* Căn giữa theo chiều dọc */
+  height: 100%; /* Chiếm toàn bộ chiều cao */
 }
 
 .logo {
-  height: 40px;
+  height: 55px;
+  width: 70px;
+  object-fit: contain;
+}
+
+.brand-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1877f2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1; /* Đặt line-height chuẩn */
+  padding-top: 0.2rem; /* Điều chỉnh vị trí nếu cần */
 }
 
 .nav-link {
@@ -121,13 +143,17 @@ onMounted(() => {
   color: #1877f2;
 }
 
+.navbar-nav {
+  display: flex;
+  align-items: center; /* Căn giữa các mục điều hướng theo chiều dọc */
+}
+
 .user-avatar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
 }
 
-/* Đảm bảo nút đăng nhập luôn hiển thị */
 .login-button {
   display: block !important;
 }
@@ -140,10 +166,10 @@ onMounted(() => {
   opacity: 1 !important;
 }
 
-/* Đảm bảo hiển thị đúng trên các kích thước màn hình */
 @media (max-width: 992px) {
   .navbar-nav {
     padding-top: 1rem;
+    align-items: flex-start; /* Trên thiết bị di động, căn chỉnh các mục về phía đầu */
   }
 
   .nav-item {
@@ -152,6 +178,44 @@ onMounted(() => {
 
   .login-button {
     margin-top: 0.5rem;
+  }
+
+  .logo {
+    top: 0; /* Đặt lại vị trí trên thiết bị di động */
+    transform: none; /* Xóa transform trên thiết bị di động */
+  }
+
+  .navbar {
+    height: auto; /* Cho phép thanh điều hướng mở rộng trên thiết bị di động */
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 1rem;
+    margin: 0 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    &.collapsing,
+    &.show {
+      animation: fadeIn 0.3s ease;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 </style>

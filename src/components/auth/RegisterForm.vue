@@ -1,24 +1,13 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <input
-          type="text"
-          v-model="form.first_name"
-          class="form-control"
-          placeholder="Họ *"
-          required
-        />
-      </div>
-      <div class="col-md-6 mb-3">
-        <input
-          type="text"
-          v-model="form.last_name"
-          class="form-control"
-          placeholder="Tên *"
-          required
-        />
-      </div>
+  <form @submit.prevent="handleSubmit" class="input-all">
+    <div class="mb-3">
+      <input
+        type="text"
+        v-model="form.full_name"
+        class="form-control"
+        placeholder="Họ và tên *"
+        required
+      />
     </div>
 
     <div class="mb-3">
@@ -102,10 +91,9 @@
 <script setup>
 import { ref, computed } from "vue";
 
-// Form data
+// Dữ liệu form
 const form = ref({
-  first_name: "",
-  last_name: "",
+  full_name: "",
   email: "",
   password: "",
   confirm_password: "",
@@ -118,15 +106,15 @@ const form = ref({
 const showPassword = ref(false);
 const showConfirmPassword = ref(false);
 
-// Hàm chuyển đổi trạng thái ẩn/hiện mật khẩu
 const togglePasswordVisibility = () => {
   showPassword.value = !showPassword.value;
 };
+
 const toggleConfirmPasswordVisibility = () => {
   showConfirmPassword.value = !showConfirmPassword.value;
 };
 
-// Tạo danh sách năm (từ năm hiện tại về trước 100 năm)
+// Danh sách năm sinh
 const currentYear = new Date().getFullYear();
 const years = computed(() => {
   const yearsArray = [];
@@ -136,33 +124,43 @@ const years = computed(() => {
   return yearsArray;
 });
 
-// Emit sự kiện submit với dữ liệu form
+// Gửi dữ liệu
 const emit = defineEmits(["submit"]);
 const handleSubmit = () => {
-  const date_of_birth = `${form.value.year}-${form.value.month}-${form.value.day}`;
+  const formatNumber = (n) => String(n).padStart(2, "0");
+  const date_of_birth = `${formatNumber(form.value.day)}-${formatNumber(
+    form.value.month
+  )}-${form.value.year}`;
+
   const userData = {
-    first_name: form.value.first_name,
-    last_name: form.value.last_name,
+    full_name: form.value.full_name,
     email: form.value.email,
     password: form.value.password,
-    confirm_password: form.value.confirm_password, // Thêm confirm_password vào dữ liệu gửi đi
-    date_of_birth: date_of_birth,
+    confirm_password: form.value.confirm_password,
+    date_of_birth,
   };
   emit("submit", userData);
 };
 </script>
 
 <style lang="scss" scoped>
+.input-all {
+  width: 360px;
+  margin: 0 auto;
+  padding: 0.2rem;
+  box-sizing: border-box;
+}
+
 .form-control,
 .form-select {
   border-radius: 6px;
   border: 1px solid #ccd0d5;
   padding: 0.75rem;
   font-size: 1rem;
-  color: #1c1e21;
   background-color: #f5f6f7;
   font-weight: 500;
   color: #4a4a4a;
+  width: 100%;
 }
 
 .form-control {
@@ -174,7 +172,7 @@ const handleSubmit = () => {
 }
 
 .position-relative {
-  position: relative; /* Để định vị con mắt bên trong ô nhập */
+  position: relative;
 }
 
 .eye-icon {
@@ -204,10 +202,6 @@ const handleSubmit = () => {
   margin-left: 0.25rem;
 }
 
-.position-relative {
-  position: relative;
-}
-
 .btn-success {
   background-color: #00a400;
   border: none;
@@ -216,9 +210,32 @@ const handleSubmit = () => {
   font-weight: 700;
   border-radius: 6px;
   margin-top: 1rem;
+  width: 100%;
 }
 
 .btn-success:hover {
   background-color: #008c00;
+}
+
+/* Responsive: chỉnh lại hiển thị ngày/tháng/năm trên thiết bị nhỏ */
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.col {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .row {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .col {
+    width: 100%;
+  }
 }
 </style>

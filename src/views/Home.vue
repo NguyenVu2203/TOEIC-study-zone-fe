@@ -49,7 +49,15 @@
                     >{{ course.rating }} ({{ course.reviews }})</span
                   >
                 </div>
-                <p class="course-price">{{ course.price }}</p>
+                <div class="course-price">
+                  <span class="original-price" v-if="course.hasDiscount">{{
+                    course.originalPrice
+                  }}</span>
+                  <span class="sale-price">{{ course.salePrice }}</span>
+                  <span class="discount-tag" v-if="course.hasDiscount"
+                    >-{{ course.discount }}%</span
+                  >
+                </div>
                 <button class="btn btn-outline-primary">Xem chi tiết</button>
               </div>
             </div>
@@ -117,7 +125,7 @@
 <script setup>
 // Import hình ảnh
 import heroImage from "@/assets/images/hero-illustration.png";
-import practiceImage from "@/assets/images/practice-illustration.png";
+import practiceImage from "@/assets/images/banner-main.png";
 
 // Dữ liệu giả cho các khóa học TOEIC
 const courses = [
@@ -129,7 +137,10 @@ const courses = [
     description: "Lộ trình học TOEIC từ 0 đến 900+ trong 3 tháng.",
     rating: "4.9",
     reviews: "1,000+ học viên",
-    price: "999,000 VNĐ",
+    originalPrice: "1,800,000đ",
+    salePrice: "989,000đ",
+    discount: "45",
+    hasDiscount: true,
   },
   {
     id: 2,
@@ -139,17 +150,23 @@ const courses = [
     description: "Luyện kỹ năng Listening TOEIC từ cơ bản đến nâng cao.",
     rating: "5.0",
     reviews: "800+ học viên",
-    price: "699,000 VNĐ",
+    originalPrice: "999,000đ",
+    salePrice: "699,000đ",
+    discount: "30",
+    hasDiscount: true,
   },
   {
     id: 3,
     title: "TOEIC Reading Mastery",
     image:
       "https://study4.com/media/courses/Course/files/2023/10/11/ielts_funda.webp",
-    description: "Hướng dẫn kỹ năng Reading TOEIC đạt điểm cao.",
+    description: "Nền tảng kỹ năng Reading TOEIC để đạt điểm cao.",
     rating: "5.0",
     reviews: "600+ học viên",
-    price: "799,000 VNĐ",
+    originalPrice: "999,000đ",
+    salePrice: "699,000đ",
+    discount: "30",
+    hasDiscount: true,
   },
 ];
 
@@ -324,10 +341,33 @@ const tests = [
 }
 
 .course-price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
   color: #e74c3c;
   margin-bottom: 0.75rem;
+  margin-left: 20px;
+
+  .original-price {
+    text-decoration: line-through;
+    color: #606770;
+    font-weight: normal;
+  }
+
+  .sale-price {
+    color: #e74c3c;
+  }
+
+  .discount-tag {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
 }
 
 /* Tests Section */

@@ -12,11 +12,7 @@
               tuyến giúp bạn <br />
               chinh phục mục tiêu.
             </p>
-            <img
-              src="https://via.placeholder.com/200x150?text=Study+Zone+Illustration"
-              alt="Study Zone Illustration"
-              class="img-fluid mt-4"
-            />
+            <img :src="logo" alt="Study Zone Illustration" class="logo-image" />
           </div>
         </div>
 
@@ -41,6 +37,7 @@
 <script setup>
 import { useRouter } from "vue-router"; // Import useRouter để điều hướng
 import LoginForm from "@/components/auth/LoginFormm.vue";
+import logo from "@/assets/images/logo-study-zone.png";
 
 const router = useRouter(); // Khởi tạo router
 
@@ -65,6 +62,14 @@ const handleLogin = (formData) => {
 </script>
 
 <style lang="scss" scoped>
+.logo-image {
+  max-width: 200px;
+  height: auto;
+  mix-blend-mode: multiply;
+  filter: contrast(1.1); /* Tăng độ tương phản nếu cần */
+  margin: 0 0 0 20%;
+}
+
 .auth-container {
   margin: 0;
   padding: 0;
@@ -153,6 +158,10 @@ const handleLogin = (formData) => {
 
   .study-zone-subtitle {
     font-size: 1rem;
+  }
+
+  .logo-image {
+    max-width: 80%;
   }
 }
 </style>

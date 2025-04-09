@@ -1,35 +1,92 @@
+<!-- src/views/user/Dashboard.vue -->
 <template>
   <div class="dashboard-container">
-    <!-- Welcome section -->
-    <div class="welcome-section">
-      <h2 class="greeting">Xin chào, {{ username }}!</h2>
-      <div class="notification-banner">
-        <i class="notification-icon"></i>
-        <span
-          >Bạn chưa tạo mục tiêu cho quá trình học tập của mình.
-          <a href="#" class="action-link">Tạo ngay</a></span
-        >
-      </div>
-    </div>
+    <!-- Hero Section -->
+    <div class="container">
+      <section class="hero-section">
+        <!-- Welcome Section -->
+        <div class="welcome-section">
+          <h1 class="greeting">Xin chào, {{ username }}!</h1>
+          <p class="notification-text">
+            ⏰ Bạn chưa tạo mục tiêu cho quá trình luyện thi của mình.
+            <a href="#" class="action-link" @click.prevent="openStudyGoalsModal"
+              >Tạo ngay</a
+            >
+          </p>
+        </div>
 
-    <!-- Schedule section -->
-    <div class="schedule-section">
-      <h3 class="section-title">Lịch học hôm nay</h3>
-      <p class="section-description">
-        Bạn không có lịch học hôm nay. Vui lòng vào Lịch học của tôi để xem thêm
-        hoặc tạo mới.
-      </p>
-    </div>
+        <!-- Schedule Section -->
+        <div class="schedule-section">
+          <h2 class="section-title">Lịch học hôm nay</h2>
+          <p class="empty-text">
+            <em
+              >Bạn không có lịch học hôm nay. Vui lòng vào<a
+                href="#"
+                class="action-link"
+                >Lịch học của tôi</a
+              >
+              để xem thêm hoặc tạo mới.</em
+            >
+          </p>
+        </div>
 
-    <!-- My courses section -->
-    <div class="my-courses-section">
-      <h3 class="section-title">Khoá học của tôi</h3>
-      <p class="section-description">Bạn chưa đăng ký khoá học nào!</p>
+        <!-- Recent Results Section -->
+        <div class="recent-results-section">
+          <h2 class="section-title">Kết quả luyện thi mới nhất</h2>
+
+          <div class="test-results-horizontal">
+            <!-- Test result 1 -->
+            <div class="test-result-card">
+              <h3 class="test-title">2024 Practice Set TOEIC Test 2</h3>
+              <div class="test-part">
+                <span>Part 4</span>
+              </div>
+              <div class="test-meta">
+                <p>Ngày làm bài: 15/12/2024</p>
+                <p>Thời gian hoàn thành: 0:37:52</p>
+                <p class="test-score">Kết quả: 18/30</p>
+              </div>
+              <a href="#" class="view-details">[Xem chi tiết]</a>
+            </div>
+
+            <!-- Test result 2 -->
+            <div class="test-result-card">
+              <h3 class="test-title">2024 Practice Set TOEIC Test 2</h3>
+              <div class="test-part">
+                <span>Part 2</span>
+              </div>
+              <div class="test-meta">
+                <p>Ngày làm bài: 14/12/2024</p>
+                <p>Thời gian hoàn thành: 0:07:10</p>
+                <p class="test-score">Kết quả: 16/25</p>
+              </div>
+              <a href="#" class="view-details">[Xem chi tiết]</a>
+            </div>
+
+            <!-- Test result 3 -->
+            <div class="test-result-card">
+              <h3 class="test-title">2024 Practice Set TOEIC Test 2</h3>
+              <div class="test-part">
+                <span>Part 3</span>
+              </div>
+              <div class="test-meta">
+                <p>Ngày làm bài: 14/12/2024</p>
+                <p>Thời gian hoàn thành: 0:31:31</p>
+                <p class="test-score">Kết quả: 19/30</p>
+              </div>
+              <a href="#" class="view-details">[Xem chi tiết]</a>
+            </div>
+          </div>
+
+          <div class="view-all-bottom">
+            <a href="#">Xem tất cả >></a>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- Banner section -->
     <div class="banner-section">
-      <!-- Using placeholder instead of direct image reference -->
       <div class="level-test-banner">
         <div class="banner-content">
           <h3>Kiểm tra trình độ miễn phí</h3>
@@ -42,60 +99,36 @@
     <!-- Featured courses section -->
     <div class="featured-courses-section">
       <h3 class="section-title">Khoá học online nổi bật</h3>
-      <div class="courses-grid">
-        <div class="course-card toeic">
-          <div class="course-image toeic-image"></div>
-          <div class="course-info">
-            <h4 class="course-title">
-              [Complete TOEIC] Chiến lược làm bài - Từ vựng - Ngữ pháp - Luyện
-              nghe với Dictation
-            </h4>
-            <p class="course-subtitle">[Tặng khoá ITS Test]</p>
-            <div class="rating">
-              <span class="stars">★★★★★</span>
-              <span class="reviews">(266) 36,802 học viên</span>
-            </div>
-            <div class="course-price">
-              <span class="current-price">989,000đ</span>
-              <span class="original-price">1,800,000đ</span>
-              <span class="discount-tag">-45%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="course-card ielts-fundamentals">
-          <div class="course-image ielts-fundamentals-image"></div>
-          <div class="course-info">
-            <h4 class="course-title">
-              [IELTS Fundamentals] Từ vựng và ngữ pháp cơ bản IELTS
-            </h4>
-            <div class="rating">
-              <span class="stars">★★★★★</span>
-              <span class="reviews">(211) 16,553 học viên</span>
-            </div>
-            <div class="course-price">
-              <span class="current-price">699,000đ</span>
-              <span class="original-price">999,000đ</span>
-              <span class="discount-tag">-30%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="course-card ielts-listening">
-          <div class="course-image ielts-listening-image"></div>
-          <div class="course-info">
-            <h4 class="course-title">
-              [IELTS Intensive Listening] Chiến lược làm bài - Chia đề - Luyện
-              nghe IELTS Listening theo phương pháp Dictation
-            </h4>
-            <div class="rating">
-              <span class="stars">★★★★★</span>
-              <span class="reviews">(222) 30,506 học viên</span>
-            </div>
-            <div class="course-price">
-              <span class="current-price">699,000đ</span>
-              <span class="original-price">999,000đ</span>
-              <span class="discount-tag">-30%</span>
+      <div class="row">
+        <div
+          class="col-md-4"
+          v-for="course in featuredCourses"
+          :key="course.id"
+        >
+          <div class="course-card">
+            <div
+              class="course-image"
+              :style="{ backgroundImage: `url(${course.image})` }"
+            ></div>
+            <div class="course-content">
+              <h4 class="course-title">{{ course.title }}</h4>
+              <p class="course-description">{{ course.description }}</p>
+              <div class="course-rating">
+                <span class="rating-star">★★★★★</span>
+                <span class="rating-score"
+                  >{{ course.rating }} ({{ course.reviews }})</span
+                >
+              </div>
+              <div class="course-price">
+                <span class="original-price" v-if="course.hasDiscount">{{
+                  course.originalPrice
+                }}</span>
+                <span class="sale-price">{{ course.salePrice }}</span>
+                <span class="discount-tag" v-if="course.hasDiscount"
+                  >-{{ course.discount }}%</span
+                >
+              </div>
+              <button class="btn btn-outline-primary">Xem chi tiết</button>
             </div>
           </div>
         </div>
@@ -104,68 +137,53 @@
         <span class="dot active"></span>
         <span class="dot"></span>
         <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
       </div>
     </div>
 
-    <!-- Recent tests section -->
-    <div class="recent-tests-section">
+    <!-- New tests section -->
+    <div class="new-tests-section">
       <h3 class="section-title">Đề thi mới nhất</h3>
-      <div class="tests-grid">
-        <!-- Test cards - first row -->
-        <div
-          class="test-card"
-          v-for="(test, index) in recentTests.slice(0, 4)"
-          :key="`test-${index}`"
-        >
-          <div class="test-info">
-            <h4 class="test-title">{{ test.title }}</h4>
-            <p class="test-details">
-              <span><i class="clock-icon"></i> {{ test.time }}</span>
-              <span
-                ><i class="question-icon"></i> {{ test.questions }} người đã làm
-                thử</span
-              >
-            </p>
-            <p class="test-attempts">
-              <span><i class="user-icon"></i> {{ test.attempts }} </span>
-            </p>
-            <div class="test-tags">
-              <span class="tag">{{ test.category }}</span>
-              <span class="tag">{{ test.type }}</span>
-            </div>
-          </div>
-          <button class="test-button">Chi tiết</button>
-        </div>
+      <p class="section-subtitle">
+        Nhận chứng chỉ chính thức - Chứng nhận - Hiệu quả
+      </p>
 
-        <!-- Test cards - second row -->
+      <!-- Dòng 1 - 4 cards đầu tiên -->
+      <div class="row">
         <div
-          class="test-card"
-          v-for="(test, index) in recentTests.slice(4, 8)"
-          :key="`test-${index + 4}`"
+          class="col-md-3"
+          v-for="(test, index) in newTests.slice(0, 4)"
+          :key="'test1-' + index"
         >
-          <div class="test-info">
+          <div class="test-card">
             <h4 class="test-title">{{ test.title }}</h4>
-            <p class="test-details">
-              <span><i class="clock-icon"></i> {{ test.time }}</span>
-              <span
-                ><i class="question-icon"></i> {{ test.questions }} người đã làm
-                thử</span
-              >
+            <p class="test-time">
+              <span class="icon">⏰</span> {{ test.time }} |
+              <span class="icon">📝</span> {{ test.participants }} |
+              <span class="icon">💬</span> {{ test.comments }}
             </p>
-            <p class="test-attempts">
-              <span><i class="user-icon"></i> {{ test.attempts }} </span>
-            </p>
-            <div class="test-tags">
-              <span class="tag">{{ test.category }}</span>
-              <span class="tag">{{ test.type }}</span>
-            </div>
+            <p class="test-description">{{ test.description }}</p>
+            <button class="btn btn-outline-primary">Chi tiết</button>
           </div>
-          <button class="test-button">Chi tiết</button>
+        </div>
+      </div>
+
+      <!-- Dòng 2 - 4 cards tiếp theo -->
+      <div class="row">
+        <div
+          class="col-md-3"
+          v-for="(test, index) in newTests.slice(4, 8)"
+          :key="'test2-' + index"
+        >
+          <div class="test-card">
+            <h4 class="test-title">{{ test.title }}</h4>
+            <p class="test-time">
+              <span class="icon">⏰</span> {{ test.time }} |
+              <span class="icon">📝</span> {{ test.participants }} |
+              <span class="icon">💬</span> {{ test.comments }}
+            </p>
+            <p class="test-description">{{ test.description }}</p>
+            <button class="btn btn-outline-primary">Chi tiết</button>
+          </div>
         </div>
       </div>
     </div>
@@ -188,149 +206,312 @@
           <span>1 TỶ USER</span>
         </div>
       </div>
-      <div class="promo-image"></div>
     </div>
     <div class="pagination-dots">
       <span class="dot active"></span>
       <span class="dot"></span>
     </div>
+
+    <!-- Modal StudyGoals -->
+    <study-goals
+      :show-modal="showStudyGoalsModal"
+      @close="closeStudyGoalsModal"
+      @save="handleSaveGoal"
+    />
   </div>
 </template>
 
 <script>
+import StudyGoals from "@/views/user/StudyGoals.vue";
+
 export default {
   name: "Dashboard",
+  components: {
+    StudyGoals,
+  },
   data() {
     return {
       username: "longvu2212203",
-      recentTests: [
+      showStudyGoalsModal: false,
+      newTests: [
         {
-          title: "IELTS Practice Set 3 Listening test 1",
-          time: "40 phút",
-          questions: "102228 | Có 283",
-          attempts: "4 phần thi | 40 câu hỏi",
-          category: "IELTS Academic",
-          type: "Listening",
+          title: "TOEIC Practice Set test 1",
+          time: "120 phút",
+          participants: "98,281 người thi",
+          comments: "636 bình luận",
+          description: "2 phần thi | 200 câu hỏi",
         },
         {
-          title: "IELTS Practice Set 3 Listening test 2",
-          time: "40 phút",
-          questions: "34496 | Có 260",
-          attempts: "4 phần thi | 40 câu hỏi",
-          category: "IELTS Academic",
-          type: "Listening",
+          title: "TOEIC Practice Set test 2",
+          time: "120 phút",
+          participants: "28,281 người thi",
+          comments: "236 bình luận",
+          description: "2 phần thi | 200 câu hỏi",
         },
         {
-          title: "IELTS Practice Set 3 Listening test 3",
-          time: "40 phút",
-          questions: "28415 | Có 256",
-          attempts: "4 phần thi | 40 câu hỏi",
-          category: "IELTS Academic",
-          type: "Listening",
+          title: "TOEIC Practice Set test 3",
+          time: "120 phút",
+          participants: "9,281 người thi",
+          comments: "636 bình luận",
+          description: "2 phần thi | 200 câu hỏi",
         },
         {
-          title: "IELTS Practice Set 3 Listening test 4",
-          time: "40 phút",
-          questions: "27553 | Có 34",
-          attempts: "4 phần thi | 40 câu hỏi",
-          category: "IELTS Academic",
-          type: "Listening",
+          title: "TOEIC Practice Set test 4",
+          time: "120 phút",
+          participants: "9,281 người thi",
+          comments: "236 bình luận",
+          description: "2 phần thi | 200 câu hỏi",
         },
         {
-          title: "IELTS Practice Set 3 Listening test 5",
-          time: "40 phút",
-          questions: "30111 | Có 76",
-          attempts: "4 phần thi | 40 câu hỏi",
-          category: "IELTS Academic",
-          type: "Listening",
+          title: "TOEIC Practice Set test 5",
+          time: "120 phút",
+          participants: "928,281 người thi",
+          comments: "636 bình luận",
+          description: "2 phần thi | 200 câu hỏi",
         },
         {
-          title: "IELTS Practice Set 3 Listening test 6",
-          time: "40 phút",
-          questions: "28992 | Có 72",
-          attempts: "4 phần thi | 40 câu hỏi",
-          category: "IELTS Academic",
-          type: "Listening",
+          title: "TOEIC Practice Set test 6",
+          time: "120 phút",
+          participants: "28,281 người thi",
+          comments: "236 bình luận",
+          description: "2 phần thi | 200 câu hỏi",
         },
         {
-          title: "IELTS Practice Set 3 Listening test 7",
-          time: "40 phút",
-          questions: "29343 | Có 59",
-          attempts: "4 phần thi | 40 câu hỏi",
-          category: "IELTS Academic",
-          type: "Listening",
+          title: "TOEIC Practice Set test 7",
+          time: "120 phút",
+          participants: "9,281 người thi",
+          comments: "636 bình luận",
+          description: "2 phần thi | 200 câu hỏi",
         },
         {
-          title: "IELTS Practice Set 3 Listening test 8",
-          time: "40 phút",
-          questions: "28989 | Có 47",
-          attempts: "4 phần thi | 40 câu hỏi",
-          category: "IELTS Academic",
-          type: "Listening",
+          title: "TOEIC Practice Set test 8",
+          time: "120 phút",
+          participants: "9,281 người thi",
+          comments: "236 bình luận",
+          description: "2 phần thi | 200 câu hỏi",
+        },
+      ],
+      featuredCourses: [
+        {
+          id: 1,
+          title: "TOEIC Complete Course",
+          image:
+            "https://study4.com/media/courses/Course/files/2023/10/11/toeic.webp",
+          description: "Lộ trình học TOEIC từ 0 đến 900+ trong 3 tháng.",
+          rating: "4.9",
+          reviews: "1,000+ học viên",
+          originalPrice: "1,800,000đ",
+          salePrice: "989,000đ",
+          discount: "45",
+          hasDiscount: true,
+        },
+        {
+          id: 2,
+          title: "TOEIC Listening Intensive",
+          image:
+            "https://study4.com/media/courses/Course/files/2023/10/11/ielts_funda.webp",
+          description: "Luyện kỹ năng Listening TOEIC từ cơ bản đến nâng cao.",
+          rating: "5.0",
+          reviews: "800+ học viên",
+          originalPrice: "999,000đ",
+          salePrice: "699,000đ",
+          discount: "30",
+          hasDiscount: true,
+        },
+        {
+          id: 3,
+          title: "TOEIC Reading Mastery",
+          image:
+            "https://study4.com/media/courses/Course/files/2023/11/30/intensive_listen.webp",
+          description: "Nền tảng kỹ năng Reading TOEIC để đạt điểm cao.",
+          rating: "5.0",
+          reviews: "600+ học viên",
+          originalPrice: "999,000đ",
+          salePrice: "699,000đ",
+          discount: "30",
+          hasDiscount: true,
         },
       ],
     };
+  },
+  methods: {
+    openStudyGoalsModal() {
+      this.showStudyGoalsModal = true;
+    },
+    closeStudyGoalsModal() {
+      this.showStudyGoalsModal = false;
+    },
+    handleSaveGoal(goal) {
+      console.log("Mục tiêu đã được lưu:", goal);
+      // Ở đây bạn có thể lưu mục tiêu vào localStorage hoặc gọi API
+      // Ví dụ: localStorage.setItem("studyGoal", JSON.stringify(goal));
+    },
   },
 };
 </script>
 
 <style scoped>
+/* Giữ nguyên style hiện tại của Dashboard.vue */
 .dashboard-container {
-  padding: 24px;
-  background-color: #f8f9fa;
-  font-family: "Roboto", sans-serif;
+  max-width: 1450px;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+  text-align: center;
 }
 
-.welcome-section {
+.container {
+  text-align: left;
+  background-color: #e6f0fa;
+  position: relative;
+  max-width: 1350px;
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 24px;
+  border-radius: 8px;
   margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Welcome Section */
+.welcome-section {
+  margin: 20px 0;
 }
 
 .greeting {
   font-size: 24px;
-  font-weight: 500;
-  color: #3a4a5e;
-  margin-bottom: 16px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 10px;
 }
 
-.notification-banner {
-  background-color: #fff3cd;
-  border-radius: 8px;
-  padding: 12px 16px;
+.notification-text {
+  margin: 0;
+  color: #333;
+  background-color: #fff3e0;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 14px;
   display: flex;
   align-items: center;
-}
-
-.notification-icon {
-  margin-right: 8px;
+  line-height: 1.5;
 }
 
 .action-link {
-  color: #0066cc;
+  color: #1976d2;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  margin-left: 5px;
+}
+
+.action-link:hover {
+  text-decoration: underline;
+}
+
+/* Schedule Section */
+.schedule-section {
+  margin-bottom: 20px;
+}
+
+.empty-text {
+  margin: 0;
+  color: #666;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Recent Results Section */
+.recent-results-section {
+  margin-top: 30px;
+  background-color: #e6f0fa;
 }
 
 .section-title {
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.test-results-horizontal {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.test-result-card {
+  min-width: 280px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 0 0 rgba(143, 156, 173, 0.2);
+  flex-shrink: 0;
+}
+
+.test-title {
+  font-size: 16px;
   font-weight: 500;
-  color: #3a4a5e;
+  color: #2c3e50;
   margin-bottom: 12px;
 }
 
-.section-description {
-  color: #6c757d;
-  margin-bottom: 24px;
+.test-part {
+  margin-bottom: 12px;
 }
 
-.schedule-section,
-.my-courses-section {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+.test-part span {
+  color: #fff;
+  font-size: 13px;
+  background-color: #f5b255;
+  border-radius: 0.35rem;
+  padding: 0.25em 0.4em;
+  font-weight: 700;
+  line-height: 1;
 }
 
+.test-meta p {
+  font-size: 14px;
+  color: #030303;
+  margin: 6px 0;
+}
+
+.test-score {
+  font-weight: 500;
+  color: #030303;
+}
+
+.view-details {
+  display: inline-block;
+  color: #1976d2;
+  text-decoration: none;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.view-details:hover {
+  text-decoration: underline;
+}
+
+.view-all-bottom {
+  text-align: right;
+}
+
+.view-all-bottom a {
+  color: #1976d2;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.view-all-bottom a:hover {
+  text-decoration: underline;
+}
+
+/* Rest of your existing styles (unchanged) */
 .banner-section {
   margin-bottom: 24px;
 }
@@ -341,7 +522,7 @@ export default {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #4a90e2;
-  background-image: linear-gradient(135deg, #4a90e2, #6c5ce7);
+  background-image: linear-gradient(135deg, #5a99e2, #796aee);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,7 +542,7 @@ export default {
 
 .start-button {
   background-color: white;
-  color: #4a90e2;
+  color: #3681dd;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
@@ -370,122 +551,117 @@ export default {
   cursor: pointer;
 }
 
-.featured-courses-section {
-  margin-bottom: 32px;
+.start-button:hover {
+  background-color: #4fd36b;
+  color: white;
+  box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
 }
 
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 16px;
+.featured-courses-section {
+  padding: 0;
 }
 
 .course-card {
   background-color: #fff;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
 
-.course-card:hover {
-  transform: translateY(-5px);
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .course-image {
   width: 100%;
-  height: 160px;
-  background-size: cover;
+  height: 150px;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
-.toeic-image {
-  background-color: #3498db;
-  background-image: linear-gradient(45deg, #3498db, #1abc9c);
-}
-
-.ielts-fundamentals-image {
-  background-color: #e74c3c;
-  background-image: linear-gradient(45deg, #e74c3c, #f39c12);
-}
-
-.ielts-listening-image {
-  background-color: #9b59b6;
-  background-image: linear-gradient(45deg, #9b59b6, #8e44ad);
-}
-
-.course-info {
-  padding: 16px;
+.course-content {
+  padding: 1rem;
 }
 
 .course-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 8px;
-  line-height: 1.4;
-  height: 60px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1c2526;
+  margin-bottom: 0.5rem;
 }
 
-.course-subtitle {
-  color: #6c757d;
-  font-size: 13px;
-  margin-bottom: 8px;
+.course-description {
+  font-size: 0.9rem;
+  color: #606770;
+  margin-bottom: 0.5rem;
+  min-height: 40px;
 }
 
-.rating {
+.course-rating {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 0.75rem;
 }
 
-.stars {
-  color: #ffc107;
-  margin-right: 8px;
+.rating-star {
+  color: #f1c40f;
+  margin-right: 0.5rem;
 }
 
-.reviews {
-  font-size: 12px;
-  color: #6c757d;
+.rating-score {
+  font-size: 0.9rem;
+  color: #606770;
 }
 
 .course-price {
   display: flex;
   align-items: center;
-}
-
-.current-price {
-  font-weight: 700;
-  color: #e94560;
-  margin-right: 8px;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e74c3c;
+  margin-bottom: 0.75rem;
 }
 
 .original-price {
   text-decoration: line-through;
-  color: #6c757d;
-  font-size: 12px;
-  margin-right: 8px;
+  color: #606770;
+  font-weight: normal;
+}
+
+.sale-price {
+  color: #e74c3c;
 }
 
 .discount-tag {
-  background-color: #e94560;
+  background-color: #e74c3c;
   color: white;
-  padding: 2px 4px;
+  padding: 0.25rem 0.5rem;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 0.8rem;
   font-weight: 500;
+}
+
+.btn-outline-primary {
+  width: 100%;
+  border-color: #1877f2;
+  color: #1877f2;
+
+  &:hover {
+    background-color: #1877f2;
+    color: #fff;
+  }
 }
 
 .pagination-dots {
   display: flex;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .dot {
@@ -501,105 +677,63 @@ export default {
   background-color: #0066cc;
 }
 
-.recent-tests-section {
-  margin-bottom: 32px;
-}
-
-.tests-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
 .test-card {
   background-color: #fff;
   border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 200px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.8rem 1.1rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .test-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 8px;
-  line-height: 1.4;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1c2526;
+  margin-bottom: 0.5rem;
 }
 
-.test-details,
-.test-attempts {
-  font-size: 12px;
-  color: #6c757d;
-  margin-bottom: 8px;
+.test-time {
+  font-size: 0.9rem;
+  color: #030303;
+  margin-bottom: 0.5rem;
   display: flex;
-  align-items: center;
-}
-
-.test-details span,
-.test-attempts span {
-  margin-right: 8px;
-  display: flex;
-  align-items: center;
-}
-
-/* Adding icons with CSS instead of using image files */
-.clock-icon:before {
-  content: "🕒";
-  margin-right: 4px;
-}
-
-.question-icon:before {
-  content: "❓";
-  margin-right: 4px;
-}
-
-.user-icon:before {
-  content: "👤";
-  margin-right: 4px;
-}
-
-.test-tags {
-  display: flex;
+  gap: 0.3rem;
   flex-wrap: wrap;
-  margin-bottom: 16px;
 }
 
-.tag {
-  background-color: #e6f7ff;
-  color: #0066cc;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  margin-right: 8px;
-  margin-bottom: 8px;
+.test-time .icon {
+  font-size: 0.8rem;
 }
 
-.test-button {
-  background-color: #fff;
-  border: 1px solid #0066cc;
-  color: #0066cc;
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.test-description {
+  font-size: 0.9rem;
+  color: #030303;
+  margin-bottom: 0.75rem;
 }
 
-.test-button:hover {
-  background-color: #0066cc;
-  color: #fff;
+.btn-outline-primary {
+  width: 100%;
+  border-color: #1877f2;
+  color: #1877f2;
+
+  &:hover {
+    background-color: #1877f2;
+    color: #fff;
+  }
 }
 
 .promo-banner {
   background-color: #f8f9fa;
   border-radius: 8px;
   padding: 0;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   overflow: hidden;
@@ -632,15 +766,15 @@ export default {
   font-size: 14px;
   color: #eaeaea;
   margin-bottom: 10px;
-  padding-left: 20px;
   position: relative;
 }
 
 .promo-features li:before {
   content: "•";
-  position: absolute;
-  left: 0;
-  color: #4cc9f0;
+  left: -20px;
+  color: #f0b14c;
+  font-size: 24px;
+  position: relative;
 }
 
 .promo-tag {
@@ -661,29 +795,8 @@ export default {
 
 .promo-tag.premium {
   background-color: #593dfb;
-  right: 80px;
-}
-
-.promo-image {
-  flex: 1;
-  background-color: #f2f2f2;
-  background-image: linear-gradient(45deg, #f2f2f2, #e6e6e6);
-  position: relative;
-}
-
-/* Add a student silhouette */
-.promo-image:after {
-  content: "";
-  position: absolute;
-  bottom: 10%;
-  right: 10%;
-  width: 70%;
-  height: 80%;
-  background-color: #ccc;
-  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="30" r="20"/><path d="M30,70 Q50,100 70,70 L70,50 L30,50 Z"/></svg>');
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  mask-position: center;
+  right: 90px;
+  font-size: 12px;
 }
 
 @media (max-width: 1024px) {

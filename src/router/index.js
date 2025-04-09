@@ -33,19 +33,19 @@ const router = createRouter({
 });
 
 // Navigation Guard để kiểm tra trạng thái đăng nhập
-router.beforeEach((to, from, next) => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  console.log("Navigating to:", to.name, "isLoggedIn:", isLoggedIn); // Debug
+// router.beforeEach((to, from, next) => {
+//   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+//   console.log("Navigating to:", to.name, "isLoggedIn:", isLoggedIn); // Debug
 
-  if (to.meta.requiresAuth && !isLoggedIn) {
-    // Nếu route yêu cầu đăng nhập mà chưa đăng nhập, chuyển hướng về /login
-    next("/login");
-  } else if (to.name === "Login" && isLoggedIn) {
-    // Nếu đã đăng nhập mà cố truy cập /login, chuyển hướng về /dashboard
-    next("/dashboard");
-  } else {
-    next();
-  }
-});
+//   if (to.meta.requiresAuth && !isLoggedIn) {
+//     // Nếu route yêu cầu đăng nhập mà chưa đăng nhập, chuyển hướng về /login
+//     next("/login");
+//   } else if (to.name === "Login" && isLoggedIn) {
+//     // Nếu đã đăng nhập mà cố truy cập /login, chuyển hướng về /dashboard
+//     next("/dashboard");
+//   } else {
+//     next();
+//   }
+// });
 
 export default router;
