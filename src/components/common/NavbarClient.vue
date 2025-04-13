@@ -24,7 +24,7 @@
             <router-link class="nav-link" to="/">Khóa học</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/tests">Luyện đề</router-link>
+            <router-link class="nav-link" to="/test-home">Luyện đề</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" to="/introduction"
@@ -32,7 +32,7 @@
             >
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/blog"
+            <router-link class="nav-link" to="/placement-test"
               >Kiểm tra đầu vào</router-link
             >
           </li>

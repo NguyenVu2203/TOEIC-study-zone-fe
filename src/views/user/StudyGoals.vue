@@ -94,25 +94,37 @@ export default {
         "Sinh học THPTQG",
         "Vật lý THPTQG",
       ],
-      showControls: false, // Biến để kiểm tra khi nào hiển thị mũi tên
+      showControls: false,
     };
   },
   methods: {
     closeModal() {
       this.$emit("close");
     },
-    saveGoal() {
-      // Logic lưu mục tiêu
-      console.log("Môn thi:", this.selectedSubject);
-      console.log("Ngày thi:", this.examDate);
-      console.log("Điểm mục tiêu:", this.targetScore);
+
+    async saveGoal() {
+      const updatedGoal = {
+        examDate: this.examDate,
+        targetScore: this.targetScore,
+      };
+
+      try {
+        const response = await axios.put(
+          "http://localhost:3000/studyGoal",
+          updatedGoal
+        );
+        this.$emit("save");
+      } catch (error) {
+        console.error("Lỗi khi cập nhật study goal:", error);
+      }
     },
+
     incrementScore() {
-      this.targetScore++; // Tăng điểm mục tiêu lên 1
+      this.targetScore++;
     },
     decrementScore() {
       if (this.targetScore > 0) {
-        this.targetScore--; // Giảm điểm mục tiêu xuống 1 nếu điểm lớn hơn 0
+        this.targetScore--;
       }
     },
   },
@@ -137,7 +149,7 @@ export default {
 .input-icon-wrapper input {
   width: 100%;
   padding: 8px 10px 8px 12px;
-  border: 1px solid #e0e0e0;
+
   border-radius: 4px;
   font-size: 14px;
 }
@@ -308,14 +320,19 @@ export default {
   align-items: center;
 }
 
-.score-input {
-  /* width: 100%;
-  padding: 8px 30px 8px 12px;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 14px; */
+.score-input-wrapper input {
+  width: 100%;
+  padding: 8px 10px 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+}
 
+.score-input:focus {
+  outline: 1px solid #1976d2;
+}
+
+.score-input {
   width: 100%;
   padding: 8px 30px 8px 12px;
   border: none;
@@ -333,14 +350,6 @@ export default {
   display: flex;
   flex-direction: column;
   width: 24px;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility 0s, opacity 0.3s ease-in-out;
-}
-
-.score-input-wrapper:hover .score-controls {
-  visibility: visible;
-  opacity: 1;
 }
 
 .score-btn {

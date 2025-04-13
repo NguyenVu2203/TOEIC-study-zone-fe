@@ -7,26 +7,40 @@
         <!-- Welcome Section -->
         <div class="welcome-section">
           <h1 class="greeting">Xin chào, {{ username }}!</h1>
-          <p class="notification-text">
+          <div v-if="!hasGoal" class="notification-text">
             ⏰ Bạn chưa tạo mục tiêu cho quá trình luyện thi của mình.
             <a href="#" class="action-link" @click.prevent="openStudyGoalsModal"
               >Tạo ngay</a
             >
-          </p>
+          </div>
+
+          <!-- Nếu đã có mục tiêu thì hiển thị -->
+          <div v-else class="study-goal-box">
+            <h3>Mục tiêu luyện thi hiện tại của bạn 🎯</h3>
+            <ul>
+              <li><strong>Môn thi:</strong> {{ userGoal.subject }}</li>
+              <li><strong>Ngày dự thi:</strong> {{ userGoal.examDate }}</li>
+              <li>
+                <strong>Mục tiêu điểm số:</strong> {{ userGoal.targetScore }}
+              </li>
+            </ul>
+            <a href="#" @click.prevent="openStudyGoalsModal"
+              >📝 Cập nhật mục tiêu</a
+            >
+          </div>
         </div>
 
         <!-- Schedule Section -->
         <div class="schedule-section">
           <h2 class="section-title">Lịch học hôm nay</h2>
           <p class="empty-text">
-            <em
-              >Bạn không có lịch học hôm nay. Vui lòng vào<a
-                href="#"
-                class="action-link"
-                >Lịch học của tôi</a
-              >
-              để xem thêm hoặc tạo mới.</em
-            >
+            <em>
+              Bạn không có lịch học hôm nay. Vui lòng vào
+              <router-link to="/schedule-form" class="action-link">
+                Lịch học của tôi
+              </router-link>
+              để xem thêm hoặc tạo mới.
+            </em>
           </p>
         </div>
 
@@ -233,6 +247,8 @@ export default {
     return {
       username: "longvu2212203",
       showStudyGoalsModal: false,
+      hasGoal: false,
+      userGoal: null,
       newTests: [
         {
           title: "TOEIC Practice Set test 1",
@@ -343,8 +359,9 @@ export default {
     },
     handleSaveGoal(goal) {
       console.log("Mục tiêu đã được lưu:", goal);
-      // Ở đây bạn có thể lưu mục tiêu vào localStorage hoặc gọi API
-      // Ví dụ: localStorage.setItem("studyGoal", JSON.stringify(goal));
+      this.hasGoal = true;
+      this.userGoal = goal;
+      this.showStudyGoalsModal = false;
     },
   },
 };
@@ -353,7 +370,8 @@ export default {
 <style scoped>
 /* Giữ nguyên style hiện tại của Dashboard.vue */
 .dashboard-container {
-  max-width: 1450px;
+  max-width: 2200px;
+  width: 100%;
   margin: 0 auto;
   font-family: "Inter", sans-serif;
   text-align: center;
@@ -363,13 +381,13 @@ export default {
   text-align: left;
   background-color: #e6f0fa;
   position: relative;
-  max-width: 1350px;
+  max-width: 100%;
 }
 
 /* Hero Section */
 .hero-section {
-  padding: 24px;
-  border-radius: 8px;
+  padding: 24px 50px;
+
   margin-bottom: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -407,6 +425,36 @@ export default {
 
 .action-link:hover {
   text-decoration: underline;
+}
+
+.study-goal-box {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.study-goal-box h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.study-goal-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+}
+
+.study-goal-box li {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.study-goal-box li strong {
+  color: #333;
 }
 
 /* Schedule Section */
@@ -514,6 +562,7 @@ export default {
 /* Rest of your existing styles (unchanged) */
 .banner-section {
   margin-bottom: 24px;
+  padding: 0 60px;
 }
 
 .level-test-banner {
@@ -557,8 +606,8 @@ export default {
   box-shadow: 0 0 15px rgba(40, 167, 69, 0.8);
 }
 
-.featured-courses-section {
-  padding: 0;
+.new-tests-section {
+  padding: 0 60px;
 }
 
 .course-card {
@@ -681,7 +730,7 @@ export default {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 1.8rem 1.1rem;
+  padding: 1.8rem 1.5rem;
   text-align: left;
   margin-bottom: 1.5rem;
   transition: all 0.3s ease;
@@ -690,6 +739,14 @@ export default {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
+}
+
+.featured-courses-section {
+  padding: 0 60px;
+}
+
+.row {
+  padding: 20px;
 }
 
 .test-title {
@@ -704,12 +761,12 @@ export default {
   color: #030303;
   margin-bottom: 0.5rem;
   display: flex;
-  gap: 0.3rem;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
 .test-time .icon {
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .test-description {
@@ -732,7 +789,7 @@ export default {
 .promo-banner {
   background-color: #f8f9fa;
   border-radius: 8px;
-  padding: 0;
+  padding: 0 60px;
   margin-bottom: 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
