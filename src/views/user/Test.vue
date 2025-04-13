@@ -363,7 +363,7 @@ export default {
   padding: 0.5rem;
 }
 
-/* Style cho dropdown khi mở (cần custom thêm với pseudo-element ::-webkit-scrollbar) */
+/* Style cho dropdown khi mở */
 .custom-time-select::-webkit-scrollbar {
   width: 8px;
 }
@@ -382,7 +382,7 @@ export default {
   background: #555;
 }
 
-/* Style cho tùy chọn khi hover hoặc được chọn (cần custom bằng JavaScript hoặc thư viện nếu muốn chính xác hơn) */
+/* Style cho tùy chọn khi hover hoặc được chọn */
 .custom-time-select option:hover,
 .custom-time-select option:checked {
   background-color: #007bff;
@@ -431,7 +431,6 @@ export default {
   background-color: #145dbf;
 }
 
-/* Giữ nguyên các style hiện có của Test.vue */
 .test-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -529,7 +528,7 @@ export default {
   gap: 15px;
 }
 
-/* Sidebar: Thông tin người dùng */
+/* Sidebar Thông tin người dùng */
 .user-info {
   background-color: #fff;
   border-radius: 8px;
@@ -627,7 +626,7 @@ export default {
   box-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
 }
 
-/* Sidebar: Nhóm học tập */
+/* Sidebar Nhóm học tập */
 .study-group {
   background-color: #fff;
   border-radius: 8px;
@@ -664,7 +663,7 @@ export default {
   background-color: #145dbf;
 }
 
-/* Sidebar: Cộng đồng */
+/* Sidebar Cộng đồng */
 .community {
   background-color: #fff;
   border-radius: 8px;
@@ -701,7 +700,6 @@ export default {
   background-color: #145dbf;
 }
 
-/* Responsive từ TestHome.vue */
 @media (max-width: 1024px) {
   .sidebar {
     flex-direction: row;
