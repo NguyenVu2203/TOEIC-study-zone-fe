@@ -11,11 +11,13 @@ import { useRoute } from "vue-router";
 // Import các layout
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
+import AdminLayout from "@/layouts/AdminLayout.vue";
 
 // Đăng ký các layout
 const layouts = {
   "default-layout": DefaultLayout,
   "auth-layout": AuthLayout,
+  "admin-layout": AdminLayout,
 };
 
 // Lấy route hiện tại
@@ -28,6 +30,7 @@ const layout = computed(() => {
   return layouts[`${layoutName}-layout`] || DefaultLayout;
 });
 </script>
+
 <style lang="scss">
 #app {
   height: 100vh !important;

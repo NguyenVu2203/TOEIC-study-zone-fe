@@ -6,10 +6,11 @@
         <div class="submit-test-content-wrapper">
           <!-- Thông báo xanh phía trên -->
           <div class="alert alert-success" role="alert">
-            <i class="fas fa-info-circle me-2"></i>
-            Click lên cột hai flashcards để highlights (làm nổi) các highlights
-            cũ. Ấn tổ hợp phím tắt: duy trì giữ shift và quét bài thi, từ hướng
-            dẫn.
+            <i class="fas fa-exclamation-circle mr-2 me-2"></i>
+            <strong> Chúc mừng</strong> bạn đã <u>hoàn thành bài thi</u>! Hãy
+            xem xét kết quả và <u>xem lại những phần bạn trả lời sai</u> để cải
+            thiện kỹ năng. Đừng quên theo dõi tiến trình và tiếp tục luyện tập
+            để đạt được mục tiêu của bạn!
           </div>
 
           <!-- Tiêu đề kết quả -->
@@ -29,20 +30,19 @@
           <div class="result-summary row mb-4">
             <div class="col-12">
               <div class="summary-grid">
-                <!-- Hàng trên: Kết quả làm bài, Độ chính xác (to gấp đôi), Trả lời đúng, Trả lời sai -->
                 <div class="summary-card">
+                  <div class="stat-icon accuracy-icon">
+                    <i class="fas fa-percentage"></i>
+                  </div>
+                  <p class="stat-label">Độ chính xác</p>
+                  <h3 class="stat-value text-success-percent">71.5%</h3>
+                </div>
+                <div class="summary-card accuracy-card">
                   <div class="stat-icon check-icon">
                     <i class="fas fa-check"></i>
                   </div>
                   <p class="stat-label">Kết quả làm bài</p>
                   <h3 class="stat-value">143/200</h3>
-                </div>
-                <div class="summary-card accuracy-card">
-                  <div class="stat-icon accuracy-icon">
-                    <i class="fas fa-percentage"></i>
-                  </div>
-                  <p class="stat-label">Độ chính xác</p>
-                  <h3 class="stat-value text-success">71.5%</h3>
                 </div>
                 <div class="summary-card">
                   <div class="stat-icon correct-icon">
@@ -128,17 +128,18 @@
             <h4>Đáp án</h4>
 
             <div class="answer-controls d-flex justify-content-between mb-3">
-              <button class="btn btn-sm btn-outline-primary">
+              <button class="btn btn-sm btn-sky-custom">
                 Xem chi tiết đáp án
               </button>
-              <div class="answer-filter">
-                <button class="btn btn-sm btn-outline-secondary me-2">
+              <div class="answer-filter d-flex align-items-center">
+                <button class="btn btn-sm btn-outline-secondary">
                   Lọc đáp án
                 </button>
-                <span class="text-muted small"
-                  >Chỉ ở filter hiển thị các câu sai hoặc đánh dấu đã nhờ TỔNG
-                  HỢP để dễ làm NHANH.</span
-                >
+                <input
+                  type="text"
+                  class="filter-input me-2"
+                  placeholder="Nhập từ khóa để lọc..."
+                />
               </div>
             </div>
 
@@ -231,9 +232,6 @@
                     <span class="answer-mark">[34 sec]</span>
                   </div>
                 </div>
-
-                <!-- Thêm các câu trả lời khác tương tự -->
-                <!-- ... -->
               </div>
             </div>
           </div>
@@ -332,11 +330,22 @@ export default {
   margin-bottom: 20px;
 }
 
+.alert {
+  padding: 0.75rem 1.25rem;
+}
+
 .alert-success {
-  background-color: #e8f5e9;
-  border-color: #c8e6c9;
-  color: #2e7d32;
-  font-size: 0.9rem;
+  background-color: #d8f0e2;
+  border-color: #c8ead6;
+  color: #1f5e39;
+  font-size: 1rem;
+  line-height: 1.7;
+  gap: 2px;
+}
+
+u {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .test-result-title {
@@ -363,7 +372,7 @@ export default {
 
 .summary-card {
   flex: 1 1 calc(20% - 15px); /* 5 cards in first row, adjusted for gap */
-  background: #fff;
+  background: #f8f9fa;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 15px;
@@ -395,8 +404,8 @@ export default {
 }
 
 .check-icon {
-  background-color: #e0e0e0;
-  color: #333;
+  background-color: #6fa8d143;
+  color: #24b30e;
 }
 
 .accuracy-icon {
@@ -407,6 +416,10 @@ export default {
 .correct-icon {
   background-color: #e8f5e9;
   color: #2e7d32;
+}
+
+.fas {
+  font-size: 25px;
 }
 
 .wrong-icon {
@@ -503,6 +516,10 @@ export default {
   margin-right: 3px;
 }
 
+.fa-exclamation-circle {
+  font-size: 15px;
+}
+
 .bg-success {
   background-color: #4caf50;
 }
@@ -515,11 +532,37 @@ export default {
   margin: 15px 0;
 }
 
+.answer-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-input {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 200px;
+  outline: none;
+  background-color: #fff;
+}
+
+.filter-input:focus {
+  border-color: #1877f2;
+  box-shadow: 0 0 5px rgba(24, 119, 242, 0.3);
+  color: #030303;
+}
+
 .alert-info {
   background-color: #e3f2fd;
   border-color: #bbdefb;
   color: #0d47a1;
   font-size: 0.9rem;
+}
+
+.fa-leaf {
+  font-size: 20px;
 }
 
 .answer-grid {
@@ -578,6 +621,8 @@ export default {
 
 .sidebar {
   top: 20px;
+  position: sticky;
+  margin-bottom: 20px;
 }
 
 .user-info {
@@ -694,6 +739,17 @@ export default {
   margin-bottom: 10px;
 }
 
+.btn-sky-custom {
+  color: #1e2022;
+  background-color: #e8f2ff;
+  border-color: #35509a;
+}
+
+.btn-sky-custom:hover {
+  color: #fff;
+  background-color: #317fe6;
+}
+
 @media (min-width: 992px) {
   .left-column {
     flex: 0 0 72%;
@@ -707,10 +763,10 @@ export default {
 
 @media (max-width: 768px) {
   .summary-card {
-    flex: 1 1 calc(50% - 15px); /* 2 cards per row on mobile */
+    flex: 1 1 calc(50% - 15px);
   }
   .summary-card.accuracy-card {
-    flex: 1 1 calc(100% - 15px); /* Full width on mobile */
+    flex: 1 1 calc(100% - 15px);
   }
   .result-stat {
     margin-bottom: 15px;
@@ -718,6 +774,16 @@ export default {
 
   .score-details .col-md-6 {
     margin-bottom: 15px;
+  }
+
+  .answer-filter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .filter-input {
+    width: 100%;
   }
 }
 </style>

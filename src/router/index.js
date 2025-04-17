@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/views/Home.vue";
 import authRoutes from "./auth";
+
+// User
 import Dashboard from "@/views/user/Dashboard.vue";
 import Introduction from "@/views/user/Introduction.vue";
 import TestHome from "@/views/user/TestHome.vue";
@@ -11,6 +13,15 @@ import Test from "@/views/user/Test.vue";
 import PlacementTest from "@/views/user/PlacementTest.vue";
 import examsRoutes from "./exams";
 import SubmitTest from "@/views/user/SubmitTest.vue";
+
+// Admin
+import DashboardAdmin from "@/views/admin/AdminDashboard.vue";
+import UserManager from "@/views/admin/UserManager.vue";
+import TestHistoryManager from "@/views/admin/TestHistoryManager.vue";
+import Statistics from "@/views/admin/Statistics.vue";
+import ScheduleManager from "@/views/admin/ScheduleManager.vue";
+import Comments from "@/views/admin/CommentManager.vue";
+import Ads from "@/views/admin/AdsManager.vue";
 
 const routes = [
   {
@@ -82,6 +93,50 @@ const routes = [
 
   ...authRoutes, // Spread các route từ authRoutes
   ...examsRoutes,
+
+  // Admin router
+  {
+    path: "/admin/dashboard",
+    name: "DashboardAdmin",
+    component: DashboardAdmin,
+    meta: { layout: "admin" },
+  },
+  {
+    path: "/admin/test-history",
+    name: "TestHistoryManager",
+    component: TestHistoryManager,
+    meta: { layout: "admin" },
+  },
+  {
+    path: "/admin/users-manager",
+    name: "UserManager",
+    component: UserManager,
+    meta: { layout: "admin" },
+  },
+  {
+    path: "/admin/statistics",
+    name: "Statistics",
+    component: Statistics,
+    meta: { layout: "admin" },
+  },
+  {
+    path: "/admin/comments",
+    name: "Comments",
+    component: Comments,
+    meta: { layout: "admin" },
+  },
+  {
+    path: "/admin/schedule-manager",
+    name: "ScheduleManager",
+    component: ScheduleManager,
+    meta: { layout: "admin" },
+  },
+  {
+    path: "/admin/ads",
+    name: "Ads",
+    component: Ads,
+    meta: { layout: "admin" },
+  },
 ];
 
 const router = createRouter({
