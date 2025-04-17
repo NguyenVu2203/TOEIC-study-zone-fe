@@ -144,14 +144,14 @@
       <!-- Nhóm học tập -->
       <div class="study-group">
         <h4>Trao đổi, học tập, Flashcards</h4>
-        <p>Study4 Extension</p>
+        <p>StudyZone Extension</p>
         <button class="extension-button">Cài đặt ngay</button>
       </div>
 
       <!-- Cộng đồng -->
       <div class="community">
         <h4>Cộng đồng luyện thi TOEIC</h4>
-        <p>Tham gia nhóm Facebook Study4</p>
+        <p>Tham gia nhóm Facebook StudyZone</p>
         <button class="join-button">Tham gia ngay</button>
       </div>
     </div>

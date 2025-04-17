@@ -243,14 +243,14 @@
           <!-- Nhóm học tập -->
           <div class="study-group">
             <h4>Trao đổi, học tập, Flashcards</h4>
-            <p>Study4 Extension</p>
+            <p>StudyZone Extension</p>
             <button class="extension-button">Cài đặt ngay</button>
           </div>
 
           <!-- Cộng đồng -->
           <div class="community">
             <h4>Cộng đồng luyện thi TOEIC</h4>
-            <p>Tham gia nhóm Facebook Study4</p>
+            <p>Tham gia nhóm Facebook StudyZone</p>
             <button class="join-button">Tham gia ngay</button>
           </div>
         </div>
@@ -262,6 +262,7 @@
 <script>
 import Comments from "./Comments.vue";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   name: "TestPage",
@@ -269,11 +270,12 @@ export default {
     Comments,
   },
   setup() {
+    const router = useRouter();
     const selectedParts = ref([]); // Mảng để lưu các phần được chọn
     const selectedTimeLimit = ref(""); // Thời gian giới hạn
     const activeTab = ref("practice"); // Tab hiện tại: 'practice' hoặc 'full-test'
 
-    // Tạo danh sách tùy chọn thời gian: 0 phút, 5 phút, ..., 90 phút
+    // Tạo danh sách tùy chọn thời gian: 0 phút, 5 phút, ..., 135 phút
     const timeOptions = ref([]);
     for (let i = 0; i <= 135; i += 5) {
       timeOptions.value.push(i.toString());
@@ -284,16 +286,26 @@ export default {
         alert("Vui lòng chọn ít nhất một phần bạn muốn làm!");
         return;
       }
-      console.log("Bắt đầu luyện tập với các phần:", selectedParts.value);
-      console.log(
-        "Thời gian giới hạn:",
-        selectedTimeLimit.value || "Không giới hạn"
-      );
+
+      // Chuyển hướng đến TestExam.vue với query parameters
+      router.push({
+        path: "/test-exam",
+        query: {
+          parts: selectedParts.value.join(","), // Truyền danh sách các phần được chọn
+          timeLimit: selectedTimeLimit.value || "0", // 0 nghĩa là không giới hạn
+        },
+      });
     };
 
     const startFullTest = () => {
-      console.log("Bắt đầu làm full test với thời gian 120 phút");
-      // Thêm logic để bắt đầu bài thi full test (ví dụ: chuyển hướng đến trang thi)
+      // Chuyển hướng đến TestExam.vue với thời gian mặc định là 120 phút
+      router.push({
+        path: "/test-exam",
+        query: {
+          parts: "Part 1,Part 2,Part 3,Part 4,Part 5,Part 6,Part 7", // Bao gồm tất cả các phần
+          timeLimit: "120", // Thời gian mặc định cho full test
+        },
+      });
     };
 
     return {
@@ -309,7 +321,7 @@ export default {
 </script>
 
 <style scoped>
-/* Thêm style cho khung bao quanh nội dung bên trái */
+/* CSS giữ nguyên */
 .test-content-wrapper {
   background-color: #fff;
   border: 1px solid #e0e0e0;
@@ -320,7 +332,6 @@ export default {
   margin: 30px 0;
 }
 
-/* Thêm style cho khung bao quanh phần bình luận */
 .comments-wrapper {
   background-color: #fff;
   border: 1px solid #e0e0e0;
@@ -331,7 +342,6 @@ export default {
   text-align: left;
 }
 
-/* Style cho dropdown thời gian */
 .form-select.custom-time-select {
   font-size: 0.9rem;
   padding: 0.5rem;
@@ -348,14 +358,12 @@ export default {
   background-size: 1rem;
 }
 
-/* Style cho danh sách tùy chọn trong dropdown */
 .custom-time-select:focus {
   border-color: #1877f2;
   box-shadow: 0 0 0 0.2rem rgba(24, 119, 242, 0.25);
   outline: none;
 }
 
-/* Style cho các tùy chọn trong dropdown */
 .custom-time-select option {
   background-color: #fff;
   color: #000;
@@ -363,7 +371,6 @@ export default {
   padding: 0.5rem;
 }
 
-/* Style cho dropdown khi mở */
 .custom-time-select::-webkit-scrollbar {
   width: 8px;
 }
@@ -382,14 +389,12 @@ export default {
   background: #555;
 }
 
-/* Style cho tùy chọn khi hover hoặc được chọn */
 .custom-time-select option:hover,
 .custom-time-select option:checked {
   background-color: #007bff;
   color: #fff;
 }
 
-/* Style cho phần "Làm full test" */
 .full-test-section {
   text-align: left;
 }
@@ -521,14 +526,12 @@ export default {
   margin-bottom: 1rem;
 }
 
-/* Thêm các style từ sidebar của TestHome.vue */
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Sidebar Thông tin người dùng */
 .user-info {
   background-color: #fff;
   border-radius: 8px;
@@ -551,7 +554,8 @@ export default {
 
 .user-details {
   flex: 1;
-  padding: 10px 0;
+  padding: 10px 20px;
+  text-align: left;
 }
 
 .user-details h4 {
@@ -587,7 +591,6 @@ export default {
   background-color: #145dbf;
 }
 
-/* Sidebar: Banner quảng cáo */
 .promo-banner {
   background: linear-gradient(135deg, #7794b6, #ada6e3);
   border-radius: 8px;
@@ -626,7 +629,6 @@ export default {
   box-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
 }
 
-/* Sidebar Nhóm học tập */
 .study-group {
   background-color: #fff;
   border-radius: 8px;
@@ -663,7 +665,6 @@ export default {
   background-color: #145dbf;
 }
 
-/* Sidebar Cộng đồng */
 .community {
   background-color: #fff;
   border-radius: 8px;

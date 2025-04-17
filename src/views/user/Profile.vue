@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page">
+  <div class="profile-page mb-5">
     <!-- Banner -->
     <div class="cover d-flex align-items-center justify-content-center">
       <img
@@ -13,20 +13,18 @@
     <div class="container text-center mt-n5">
       <div class="avatar-wrapper position-relative d-inline-block">
         <img
-          src="@/assets/images/user-avatar.png"
+          :src="form.avatarUrl"
           alt="Avatar"
           class="rounded-circle avatar-img border border-white"
         />
-        <span class="edit-icon position-absolute"
-          ><i class="bi bi-pencil-fill"></i
-        ></span>
+        <span class="position-absolute"><i class="bi bi-pencil-fill"></i></span>
       </div>
       <h4 class="fw-bold mt-2">{{ form.fullName }}</h4>
       <span class="badge bg-light text-dark fw-medium">Trang công khai</span>
     </div>
 
     <!-- Tabs -->
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5">
       <ul class="nav nav-tabs justify-content-center mb-3">
         <li class="nav-item">
           <a
@@ -47,13 +45,28 @@
             <!-- Bên trái -->
             <div class="flex-shrink-0 text-center w-25 border-end pe-4">
               <img
-                src="@/assets/images/user-avatar.png"
+                :src="form.avatarUrl"
                 class="rounded-circle mb-3"
                 style="width: 100px; height: 100px"
               />
               <h5 class="fw-bold mb-1">{{ form.fullName }}</h5>
               <p class="text-muted mb-1">{{ form.email }}</p>
               <small class="text-muted">{{ formatDate(form.dob) }}</small>
+              <div class="mt-2">
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  @click="triggerUpload"
+                >
+                  Cập nhật ảnh đại diện
+                </button>
+                <input
+                  ref="fileInput"
+                  type="file"
+                  accept="image/*"
+                  class="d-none"
+                  @change="handleAvatarChange"
+                />
+              </div>
             </div>
 
             <!-- Bên phải -->
@@ -110,13 +123,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Tab: Kết quả luyện thi -->
-      <div v-if="activeTab === 'result'" class="text-center py-5">
-        <div class="text-muted fst-italic">
-          Bạn chưa có kết quả luyện thi nào!
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -124,13 +130,15 @@
 <script setup>
 import { ref, reactive } from "vue";
 
-const activeTab = ref("profile"); // 'result' để mở mặc định tab 2
+const activeTab = ref("profile");
+const fileInput = ref(null);
 
 const form = reactive({
   fullName: "Lê Thị Ánh Ngọc",
   email: "ngoclee22803@gmail.com",
   phone: "0394446103",
   dob: "2003-08-22",
+  avatarUrl: new URL("@/assets/images/user-avatar.png", import.meta.url).href,
 });
 
 function formatDate(dateStr) {
@@ -140,6 +148,21 @@ function formatDate(dateStr) {
 
 function handleSubmit() {
   alert("Đã lưu thông tin!");
+}
+
+function triggerUpload() {
+  fileInput.value.click();
+}
+
+function handleAvatarChange(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      form.avatarUrl = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
 }
 </script>
 
@@ -166,16 +189,6 @@ function handleSubmit() {
       height: 100px;
       object-fit: cover;
       margin-top: -50px;
-    }
-
-    .edit-icon {
-      bottom: 0;
-      right: 0;
-      background: #fff;
-      border-radius: 50%;
-      padding: 5px;
-      font-size: 0.8rem;
-      border: 1px solid #ccc;
     }
   }
 

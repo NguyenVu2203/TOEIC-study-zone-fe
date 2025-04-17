@@ -1,5 +1,6 @@
 import { createApp } from "vue";
-import App from "./App.vue"; //App.vue
+import { createPinia } from "pinia"; // Import Pinia
+import App from "./App.vue"; // App.vue
 import router from "./router"; // Import router
 
 import "bootstrap/dist/css/bootstrap.min.css"; // CSS cơ bản
@@ -14,5 +15,6 @@ const app = createApp(App);
 
 app.component("auth-layout", AuthLayout);
 
+app.use(createPinia()); // Tích hợp Pinia
 app.use(router);
 app.mount("#app");
